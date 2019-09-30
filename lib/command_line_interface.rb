@@ -1,8 +1,19 @@
 def welcome
-  # puts out a welcome message here!
+  puts "Hello!"
 end
 
 def get_character_from_user
-  puts "please enter a character name"
-  # use gets to capture the user's input. This method should return that input, downcased.
+  puts "Please enter a character name (options below)"
+  puts get_all_info["results"].map {|stuff| stuff["name"]}
+  user_input = gets.chomp
+
+  if get_all_info["results"].map {|stuff| stuff["name"].downcase}.include?(user_input.downcase)
+    user_input.downcase 
+  else
+    puts "Your input is not valid. Please try again."
+    get_character_from_user
+  end
 end
+
+
+
